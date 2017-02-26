@@ -3,6 +3,24 @@ var express = require('express')
 var app = express();
 var bodyParser = require('body-parser');
 
+// TEMPORARY - until I get models/index.js set up
+var mongoose = require('mongoose');
+mongoose.connect('mongob://localhost:3000');
+
+var Anime = require('./models/anime');
+
+var hunter = new Anime({
+  title: "Hunter X Hunter",
+  description: "Very exciting anime",
+  total_episodes: 200,
+  adult: false
+});
+
+hunter.save(function(err, newAnime){
+  if (err) {return console.log(err);}
+  console.log("saved new anime: ", newAnime);
+});
+
 // Data (temporary until I set up the database)
 
 var anime = [
